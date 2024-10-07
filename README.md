@@ -70,22 +70,96 @@ O projeto foi testado usando o [Grafana k6](https://k6.io/) para realizar tanto 
 
 ### Sucesso na Checagem por IP
 ```sh
-curl -vvv http://localhost:8080
+➜  curl -vvv http://localhost:8080
+*   Trying [::1]:8080...
+* Connected to localhost (::1) port 8080
+> GET / HTTP/1.1
+> Host: localhost:8080
+> User-Agent: curl/8.4.0
+> Accept: */*
+> 
+< HTTP/1.1 200 OK
+< Accept: application/json
+< Content-Type: application/json
+< X-Ratelimit-Limit: 10
+< X-Ratelimit-Remaining: 2
+< X-Ratelimit-Reset: 1728329374
+< Date: Mon, 07 Oct 2024 19:29:26 GMT
+< Content-Length: 27
+< 
+{"message":"Hello World!"}
+* Connection #0 to host localhost left intact
 ```
 
 ### Sucesso na Checagem por Token
 ```sh
-curl -H 'API_KEY: some-api-key-123' -vvv http://localhost:8080
+➜  curl -H 'API_KEY: api-key-123' -vvv http://localhost:8080
+*   Trying [::1]:8080...
+* Connected to localhost (::1) port 8080
+> GET / HTTP/1.1
+> Host: localhost:8080
+> User-Agent: curl/8.4.0
+> Accept: */*
+> API_KEY: api-key-123
+> 
+< HTTP/1.1 200 OK
+< Accept: application/json
+< Content-Type: application/json
+< X-Ratelimit-Limit: 100
+< X-Ratelimit-Remaining: 99
+< X-Ratelimit-Reset: 1728329485
+< Date: Mon, 07 Oct 2024 19:31:15 GMT
+< Content-Length: 27
+< 
+{"message":"Hello World!"}
+* Connection #0 to host localhost left intact
 ```
 
 ### Limite Excedido na Checagem por IP
 ```sh
-curl -vvv http://localhost:8080
+➜  curl -vvv http://localhost:8080
+*   Trying [::1]:8080...
+* Connected to localhost (::1) port 8080
+> GET / HTTP/1.1
+> Host: localhost:8080
+> User-Agent: curl/8.4.0
+> Accept: */*
+> 
+< HTTP/1.1 429 Too Many Requests
+< Accept: application/json
+< Content-Type: application/json
+< X-Ratelimit-Limit: 10
+< X-Ratelimit-Remaining: 0
+< X-Ratelimit-Reset: 1728329374
+< Date: Mon, 07 Oct 2024 19:29:28 GMT
+< Content-Length: 109
+< 
+{"message":"you have reached the maximum number of requests or actions allowed within a certain time frame"}
+* Connection #0 to host localhost left intact
 ```
 
 ### Limite Excedido na Checagem por Token
 ```sh
-curl -H 'API_KEY: some-api-key-123' -vvv http://localhost:8080
+curl -H 'API_KEY: api-key-123' -vvv http://localhost:8080
+*   Trying [::1]:8080...
+* Connected to localhost (::1) port 8080
+> GET / HTTP/1.1
+> Host: localhost:8080
+> User-Agent: curl/8.4.0
+> Accept: */*
+> API_KEY: api-key-123
+> 
+< HTTP/1.1 429 Too Many Requests
+< Accept: application/json
+< Content-Type: application/json
+< X-Ratelimit-Limit: 5
+< X-Ratelimit-Remaining: 0
+< X-Ratelimit-Reset: 1728329541
+< Date: Mon, 07 Oct 2024 19:32:13 GMT
+< Content-Length: 109
+< 
+{"message":"you have reached the maximum number of requests or actions allowed within a certain time frame"}
+* Connection #0 to host localhost left intact
 ```
 
 ## Testes Automatizados
