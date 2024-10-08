@@ -60,7 +60,8 @@ O projeto foi testado usando o [Grafana k6](https://k6.io/) para realizar tanto 
 
 **Pré-requisitos**: Docker e Docker Compose devem estar instalados em seu ambiente.
 
-1. **Configuração**: Crie um arquivo `.env` na raiz do projeto usando `.env.example` como modelo e ajuste as variáveis conforme necessário.
+1. **Configuração**: Configure o arquivo `.env` na raiz do projeto e ajuste as variáveis conforme necessário.
+
 2. **Iniciar a aplicação**: Use o comando abaixo para iniciar o Redis e a aplicação:
    ```sh
    docker compose up redis api
