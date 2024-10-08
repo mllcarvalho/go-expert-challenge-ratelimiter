@@ -4,8 +4,8 @@ import { sleep } from 'k6';
 
 export const options = {
   stages: [
-    { duration: '10m', target: 200 },
-    { duration: '30m', target: 200 },
+    { duration: '10m', target: 30 },
+    { duration: '10m', target: 60 },
     { duration: '5m', target: 0 },
   ],
   thresholds: {
@@ -17,9 +17,9 @@ export const options = {
 };
 
 export default function () {
-    http.get('http://localhost:8080');
+    http.get('http://rate-limiter_api:8080');
 
-    http.get('http://localhost:8080', {
+    http.get('http://rate-limiter_api:8080', {
       headers: {
         'API_KEY': 'any-api-key'
       }

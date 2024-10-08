@@ -1,13 +1,12 @@
-K6_WEB_DASHBOARD=true K6_WEB_DASHBOARD_EXPORT=scripts/k6/smoke-test-report.html k6 run scripts/k6/smoke.test.js
 
-          /\      |‾‾| /‾‾/   /‾‾/   
-     /\  /  \     |  |/  /   /  /    
-    /  \/    \    |     (   /   ‾‾\  
-   /          \   |  |\  \ |  (‾)  | 
-  / __________ \  |__| \__\ \_____/ .io
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
 
      execution: local
-        script: scripts/k6/smoke.test.js
+        script: /scripts/smoke/smoke.test.js
  web dashboard: http://127.0.0.1:5665
         output: -
 
@@ -15,26 +14,26 @@ K6_WEB_DASHBOARD=true K6_WEB_DASHBOARD_EXPORT=scripts/k6/smoke-test-report.html 
               * default: 5 looping VUs for 1m0s (gracefulStop: 30s)
 
 
-     data_received..................: 265 MB  4.4 MB/s
-     data_sent......................: 92 MB   1.5 MB/s
-     http_req_blocked...............: min=520ns    med=1.13µs   avg=1.24µs   p(90)=1.59µs   p(95)=1.8µs    max=585.5µs  count=1005218
-     http_req_connecting............: min=0s       med=0s       avg=0ns      p(90)=0s       p(95)=0s       max=121.24µs count=1005218
-     http_req_duration..............: min=131.3µs  med=231.47µs avg=264.46µs p(90)=332.67µs p(95)=409.97µs max=114.24ms count=1005218
-       { expected_response:true }...: min=208.95µs med=325.41µs avg=389.75µs p(90)=499.68µs p(95)=602.65µs max=7.75ms   count=6600   
-     ✓ { status:200 }...............: min=208.95µs med=325.41µs avg=389.75µs p(90)=499.68µs p(95)=602.65µs max=7.75ms   count=6600   
-     ✓ { status:429 }...............: min=131.3µs  med=231.18µs avg=263.63µs p(90)=330.29µs p(95)=407.52µs max=114.24ms count=998618 
-     ✓ { status:500 }...............: min=0s       med=0s       avg=0s       p(90)=0s       p(95)=0s       max=0s       count=0      
-     http_req_failed................: 99.34%  ✓ 998618       ✗ 6600
-     http_req_receiving.............: min=6.48µs   med=17.53µs  avg=18.19µs  p(90)=24.15µs  p(95)=26.77µs  max=3.44ms   count=1005218
-     http_req_sending...............: min=2.5µs    med=5.34µs   avg=5.6µs    p(90)=7.2µs    p(95)=8.04µs   max=5.93ms   count=1005218
-     http_req_tls_handshaking.......: min=0s       med=0s       avg=0s       p(90)=0s       p(95)=0s       max=0s       count=1005218
-     http_req_waiting...............: min=113.25µs med=207.94µs avg=240.66µs p(90)=306.54µs p(95)=381.84µs max=114.2ms  count=1005218
-     http_reqs......................: 1005218 16753.447204/s
-     iteration_duration.............: min=342.87µs med=529.66µs avg=590.6µs  p(90)=728.73µs p(95)=864.94µs max=114.84ms count=502609 
-     iterations.....................: 502609  8376.723602/s
-     vus............................: 5       min=5          max=5 
-     vus_max........................: 5       min=5          max=5 
+     data_received..................: 52 MB  864 kB/s
+     data_sent......................: 15 MB  250 kB/s
+     http_req_blocked...............: min=458ns      med=875ns    avg=1.78µs  p(90)=2.5µs    p(95)=3.25µs  max=3.34ms   count=152786
+     http_req_connecting............: min=0s         med=0s       avg=24ns    p(90)=0s       p(95)=0s      max=807.95µs count=152786
+     http_req_duration..............: min=-2293973ns med=347.41µs avg=1.93ms  p(90)=753.08µs p(95)=1.2ms   max=2.56s    count=152786
+       { expected_response:true }...: min=199.16µs   med=525.08µs avg=1.12ms  p(90)=1.16ms   p(95)=1.75ms  max=54.72ms  count=660   
+     ✓ { status:200 }...............: min=199.16µs   med=525.08µs avg=1.12ms  p(90)=1.16ms   p(95)=1.75ms  max=54.72ms  count=660   
+     ✓ { status:429 }...............: min=-2293973ns med=346.91µs avg=1.93ms  p(90)=749.25µs p(95)=1.2ms   max=2.56s    count=152126
+     ✓ { status:500 }...............: min=0s         med=0s       avg=0s      p(90)=0s       p(95)=0s      max=0s       count=0     
+     http_req_failed................: 99.56% 152126 out of 152786
+     http_req_receiving.............: min=3.75µs     med=8.12µs   avg=16.36µs p(90)=30.66µs  p(95)=41.75µs max=9ms      count=152786
+     http_req_sending...............: min=-2505681ns med=2.04µs   avg=4.18µs  p(90)=6.87µs   p(95)=9µs     max=9.06ms   count=152786
+     http_req_tls_handshaking.......: min=0s         med=0s       avg=0s      p(90)=0s       p(95)=0s      max=0s       count=152786
+     http_req_waiting...............: min=0s         med=329.95µs avg=1.91ms  p(90)=723.66µs p(95)=1.17ms  max=2.56s    count=152786
+     http_reqs......................: 152786 2546.472896/s
+     iteration_duration.............: min=243.75µs   med=763.95µs avg=3.92ms  p(90)=1.68ms   p(95)=2.18ms  max=2.56s    count=76393 
+     iterations.....................: 76393  1273.236448/s
+     vus............................: 5      min=5                max=5
+     vus_max........................: 5      min=5                max=5
 
 
-running (1m00.0s), 0/5 VUs, 502609 complete and 0 interrupted iterations
+running (1m00.0s), 0/5 VUs, 76393 complete and 0 interrupted iterations
 default ✓ [======================================] 5 VUs  1m0s

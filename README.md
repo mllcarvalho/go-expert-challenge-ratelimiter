@@ -20,15 +20,15 @@ A estrutura da aplicação é composta por:
 
 Os parâmetros de controle do rate limiter são definidos no arquivo `.env`, com as seguintes variáveis:
 
-- `RATE_LIMITER_IP_MAX_REQUESTS`: Número máximo de requisições permitidas por IP.
-- `RATE_LIMITER_TOKEN_MAX_REQUESTS`: Número máximo de requisições permitidas por token.
-- `RATE_LIMITER_TIME_WINDOW_MILISECONDS`: Duração da janela de tempo em milissegundos.
+- `IP_MAX_REQUESTS`: Número máximo de requisições permitidas por IP.
+- `TOKEN_MAX_REQUESTS`: Número máximo de requisições permitidas por token.
+- `TIME_MILISECONDS`: Duração da janela de tempo em milissegundos.
 
 Exemplo de configuração:
 ```sh
-RATE_LIMITER_IP_MAX_REQUESTS=10
-RATE_LIMITER_TOKEN_MAX_REQUESTS=100
-RATE_LIMITER_TIME_WINDOW_MILISECONDS=300000  # 5 minutos
+IP_MAX_REQUESTS=10
+TOKEN_MAX_REQUESTS=100
+TIME_MILISECONDS=300000  # 5 minutos
 ```
 
 As variáveis de ambiente são lidas pelo [gerenciador de dependências](internal/pkg/dependencyinjector/injector.go) no início da aplicação, garantindo flexibilidade na configuração.
@@ -185,7 +185,7 @@ Para executar os testes de estresse com o k6:
    ```
    para um teste prolongado (_stress test_).
 
-Os resultados dos testes de carga estão disponíveis em `./scripts/k6/smoke` e `./scripts/k6/stress`, incluindo relatórios em formato de texto e HTML.
+Os resultados dos testes de carga estão disponíveis em `./scripts/k6/smoke` e `./scripts/k6/stress`
 
 ## Considerações Finais
 
